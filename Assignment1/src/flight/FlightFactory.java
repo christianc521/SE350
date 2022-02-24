@@ -25,7 +25,9 @@ public class FlightFactory {
             if (type.equals("passengerFlight")) {
                 try {
                     Flight newFlight = flightCache.computeIfAbsent(airline, newAirline -> {
-                        return new PassangerFlight(newAirline, origin, destination, passengerCapacity);
+                        Airport newOrigin = new Airport();
+                        Airport newDestination = new Airport();
+                        return new PassangerFlight(newAirline, newOrigin, newDestination, passengerCapacity);
                     });
                     return newFlight;
                 } catch(NullParameterException | BadParameterException e) {
