@@ -1,16 +1,22 @@
-import java.security.InvalidParameterException;
-import java.util.Date;
-import java.util.UUID;
+import Airline.Airline;
+import airport.Airport;
+import exception.BadParameterException;
+import exception.NullParameterException;
+import flight.CommercialFlight;
 
 public class TravelManager {
-    public static void main(String[] args) throws InvalidParameterException {
-        Airline airline1 = new Airline("United");
-        Airport airport1 = new Airport("ORD");
-        Airport airport2 = new Airport("LAX");
-        Date day = new Date(2022, 03, 18, 2,5, 0);
-        UUID num = UUID.randomUUID();
-        Flight vacation = new Flight(airline1, airport1, airport2, num.toString(), day);
+    public static void main(String[] args) {
+        try {
+            Airline Spirit = new Airline("Spirit");
+            Airport Chicago = new Airport("ORD");
+            Airport LA = new Airport("LAX");
+            CommercialFlight SpringBreak = new CommercialFlight(Spirit, Chicago, LA);
 
-        System.out.println(vacation.getOrigineAirport().toString());
+            System.out.print(SpringBreak);
+        } catch (NullParameterException e) {
+            e.printStackTrace();
+        } catch (BadParameterException e) {
+            e.printStackTrace();
+        }
     }
 }
